@@ -45,7 +45,7 @@ tr.chg td{background:var(--accbg)}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}
 .tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:8px 14px}
 .tabs button[aria-selected=true]{border-bottom-color:var(--acc);font-weight:650}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
 .card,.kpi{background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:14px}
 .card h2{font-size:15px;margin:0 0 10px}
 .full{grid-column:1/-1}
@@ -62,6 +62,37 @@ tr.chg td{background:var(--accbg)}
 #imsg{color:var(--mute);align-self:center;font-size:13px}
 @media (max-width:640px){.head,summary{grid-template-columns:minmax(0,1.6fr) 1fr 1fr;font-size:14px}.hide{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+html{-webkit-text-size-adjust:100%}
+.br .sp{display:none}
+@media (max-width:640px){
+main{padding:14px max(12px,env(safe-area-inset-right)) 40px max(12px,env(safe-area-inset-left))}
+h1{font-size:20px}
+.tabs button{flex:1;padding:10px 6px;font-size:14px}
+button,.fb,select,input{min-height:40px;font-size:16px}
+.fb{display:inline-flex;align-items:center}
+.bar{gap:6px}.bar input{flex:1;min-width:0}
+.head,summary{grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.tw{overflow:visible}
+table,thead,tbody,tr,td{display:block;min-width:0;width:100%}
+thead{display:none}
+tr{display:grid;grid-template-columns:auto auto 1fr auto;grid-template-areas:"e e e v" "d p c ." "s s s s";gap:2px 10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+tr:last-child{border-bottom:0}
+td{border:0;padding:0;width:auto;font-size:13px;color:var(--mute)}
+td:nth-child(1){grid-area:d}
+td:nth-child(2){grid-area:e;color:var(--ink);font-size:15px;font-weight:600;overflow-wrap:anywhere}
+td:nth-child(3){grid-area:p}
+td:nth-child(4){grid-area:c}
+td:nth-child(5){grid-area:v;color:var(--ink);font-size:15px;font-weight:600}
+td:nth-child(6){grid-area:s;margin-top:6px}
+td select{width:100%;max-width:none}
+tr.chg{background:var(--accbg)}tr.chg td{background:none}
+.br{grid-template-columns:1fr auto}
+.br>span:first-child{grid-column:1;grid-row:1}
+.br>.bv{grid-column:2;grid-row:1}
+.br>.bt{grid-column:1/-1;grid-row:2}
+.br .sp{display:block}
+.kpis{grid-template-columns:1fr 1fr}.kpi b{font-size:17px}
+}
 </style>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b6b63"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 </head>
@@ -126,7 +157,7 @@ const Pr=R.filter(r=>r.p==='P'),Nr=R.filter(r=>r.p==='N'),T=S(R),P=S(Pr),N=S(Nr)
 const by=a=>{const m={};a.forEach(r=>m[r.c]=(m[r.c]||0)+r.v);return Object.entries(m).sort((x,y)=>y[1]-x[1])};
 const one=(it,col)=>{const mx=Math.max(...it.map(i=>i[1]),1);return it.map(([k,v])=>`<div class='br'><span>${k}</span><span class='bt'><i style='width:${Math.max(v,0)/mx*100}%;background:${col}'></i></span><span class='bv'>${f(v)}</span></div>`).join('')};
 const all=by(R),mx=Math.max(...all.map(x=>x[1]),1);
-const stack=all.map(([k])=>{const p=S(Pr.filter(r=>r.c===k)),n=S(Nr.filter(r=>r.c===k));return `<div class='br'><span>${k}</span><span class='bt'><i title='Paulo: ${f(p)}' style='width:${Math.max(p,0)/mx*100}%;background:var(--acc)'></i><i title='Natália: ${f(n)}' style='width:${Math.max(n,0)/mx*100}%;background:var(--n)'></i></span><span class='bv'>${f(p+n)}</span></div>`}).join('');
+const stack=all.map(([k])=>{const p=S(Pr.filter(r=>r.c===k)),n=S(Nr.filter(r=>r.c===k));return `<div class='br'><span>${k}<small class='sp'>Paulo ${f(p)} · Natália ${f(n)}</small></span><span class='bt'><i title='Paulo: ${f(p)}' style='width:${Math.max(p,0)/mx*100}%;background:var(--acc)'></i><i title='Natália: ${f(n)}' style='width:${Math.max(n,0)/mx*100}%;background:var(--n)'></i></span><span class='bv'>${f(p+n)}</span></div>`}).join('');
 const par=R.filter(r=>r.pc).map(r=>{const [n,m]=r.pc.split(' de ').map(Number);return {...r,n,m}});
 const pv=S(par),pP=S(par.filter(r=>r.p==='P')),pN=pv-pP;
 const fut=par.reduce((s,r)=>s+r.v*(r.m-r.n),0),nw=par.filter(r=>r.n===1);

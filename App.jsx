@@ -84,7 +84,7 @@ function Dash({ R }) {
             const p = S(Pr.filter(r => r.c === k)), n = S(Nr.filter(r => r.c === k))
             return (
               <div className="br" key={k}>
-                <span>{k}</span>
+                <span>{k}<small className="sp">Paulo {f(p)} · Natália {f(n)}</small></span>
                 <span className="bt">
                   <i title={'Paulo: ' + f(p)} style={{ width: (Math.max(p, 0) / mx) * 100 + '%', background: 'var(--acc)' }} />
                   <i title={'Natália: ' + f(n)} style={{ width: (Math.max(n, 0) / mx) * 100 + '%', background: 'var(--n)' }} />
