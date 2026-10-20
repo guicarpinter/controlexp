@@ -40,6 +40,7 @@ function Bar({ k, sub, v, mx, col }) {
 }
 
 function Dash({ R }) {
+  if (!R.length) return <p className="sub">Importe um CSV para ver o dashboard.</p>
   const Pr = R.filter(r => r.p === 'P'), Nr = R.filter(r => r.p === 'N'), T = S(R), P = S(Pr), N = S(Nr)
   const by = a => Object.entries(a.reduce((m, r) => ((m[r.c] = (m[r.c] || 0) + r.v), m), {})).sort((x, y) => y[1] - x[1])
   const all = by(R), mx = Math.max(...all.map(x => x[1]), 1)
@@ -142,21 +143,22 @@ export default function App() {
     rd.readAsText(file, 'utf-8')
   }
   const orig = () => {
-    setD(D0); setOv({}); setFname(''); setMsg('')
+    setD(D0); setOv({}); setCustom([]); setFname(''); setMsg('')
     try { localStorage.removeItem('imp'); localStorage.removeItem('impn') } catch {}
   }
 
   return (
-    <main>
-      <h1>{fname ? `Fatura importada: ${fname}` : 'Fatura de 20/10/2026'}</h1>
-      <p className="sub">Paulo e Natália. Os gráficos refletem as reclassificações feitas na guia de categorias.</p>
+    <main className={R.length ? '' : 'vazio'}>
+      <h1>{fname ? `Fatura importada: ${fname}` : 'Análise de fatura'}</h1>
+      <p className="sub">Importe o CSV da fatura para começar. Os dados ficam apenas neste aparelho.</p>
       <div className="bar">
         <label className="fb">Importar CSV
           <input type="file" accept=".csv,text/csv,text/plain" hidden onChange={e => { const fl = e.target.files[0]; if (fl) load(fl); e.target.value = '' }} />
         </label>
-        <button onClick={orig}>Fatura original</button>
+        <button onClick={orig}>Zerar dados importados</button>
         <span id="imsg">{msg}</span>
       </div>
+      {!R.length && <p className="sub">Nenhum dado carregado. Toque em Importar CSV e escolha o arquivo (Data;Estabelecimento;Portador;Valor;Parcela).</p>}
       <nav className="tabs" role="tablist">
         {[['cat', 'Despesas por categoria'], ['dash', 'Dashboard']].map(([k, l]) => (
           <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)}>{l}</button>
