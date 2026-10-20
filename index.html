@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Despesas por categoria – fatura 20/10/2026</title>
+<style>
+:root{--bg:#f5f6f8;--surf:#fff;--ink:#16212b;--mute:#5d6b78;--line:#dfe3e8;--acc:#0b6b63;--accbg:#e3f1ef;--neg:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171d;--surf:#18222b;--ink:#e8edf1;--mute:#97a5b1;--line:#2a3743;--acc:#5fc4b8;--accbg:#173a38;--neg:#f2877f}}
+:root[data-theme="dark"]{--bg:#10171d;--surf:#18222b;--ink:#e8edf1;--mute:#97a5b1;--line:#2a3743;--acc:#5fc4b8;--accbg:#173a38;--neg:#f2877f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:980px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;margin:0 0 4px;font-weight:650}
+.sub{color:var(--mute);margin:0 0 16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;color:var(--ink);background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--acc)}button:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button[aria-pressed=true]{background:var(--accbg);border-color:var(--acc)}
+.head,summary{display:grid;grid-template-columns:minmax(0,2.2fr) 1fr 1fr 1fr 56px;gap:8px;align-items:center;padding:10px 14px}
+.head{color:var(--mute);font-size:13px}
+.num{text-align:right}
+details{background:var(--surf);border:1px solid var(--line);border-radius:8px;margin-bottom:6px}
+summary{cursor:pointer;list-style:none;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary .nm::before{content:"▸";display:inline-block;width:1.1em;color:var(--acc);transition:transform .15s}
+details[open] summary .nm::before{transform:rotate(90deg)}
+details[open] summary{border-bottom:1px solid var(--line);background:var(--accbg);border-radius:8px 8px 0 0}
+.cnt{color:var(--mute);font-weight:400;font-size:13px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:780px}
+th,td{padding:7px 14px;text-align:left;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{color:var(--mute);font-weight:500;font-size:13px}
+td.num,th.num{text-align:right}
+.tot{margin-top:10px;background:var(--surf);border:2px solid var(--acc);border-radius:8px;font-weight:700}
+.tot .head{color:var(--ink);font-size:inherit}
+.neg{color:var(--neg)}
+select{font:inherit;font-size:13px;color:var(--ink);background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:3px 6px;max-width:210px}
+input{font:inherit;color:var(--ink);background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+tr.chg td{background:var(--accbg)}
+:root{--n:#6b4fbb}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--n:#a99af0}}:root[data-theme="dark"]{--n:#a99af0}
+[hidden]{display:none!important}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:8px 14px}
+.tabs button[aria-selected=true]{border-bottom-color:var(--acc);font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.card,.kpi{background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:14px}
+.card h2{font-size:15px;margin:0 0 10px}
+.full{grid-column:1/-1}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.kpi b{display:block;font-size:20px}.kpi span{color:var(--mute);font-size:13px}
+.br{display:grid;grid-template-columns:minmax(100px,1.3fr) 2fr auto;gap:8px;align-items:center;margin:6px 0;font-size:13px}
+.br small{display:block;color:var(--mute)}
+.bt{display:flex;height:14px;background:var(--bg);border-radius:4px;overflow:hidden}.bt i{display:block;height:100%}.bt i:hover{filter:brightness(1.2)}
+.bv{text-align:right;min-width:80px}
+.leg{font-size:13px;color:var(--mute);margin-bottom:6px}.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px}
+.card ul{margin:0;padding-left:18px}.card li{margin:5px 0}
+#chgn{color:var(--mute);align-self:center}
+.fb{border:1px solid var(--line);border-radius:6px;padding:6px 12px;background:var(--surf);cursor:pointer}.fb:hover{border-color:var(--acc)}
+#imsg{color:var(--mute);align-self:center;font-size:13px}
+@media (max-width:640px){.head,summary{grid-template-columns:minmax(0,1.6fr) 1fr 1fr;font-size:14px}.hide{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b6b63"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+<main>
+<h1 id='ttl'>Fatura de 20/10/2026</h1>
+<p class="sub">Fatura de 20/10/2026. Paulo e Natália. Os gráficos refletem as reclassificações feitas na guia de categorias.</p>
+<div class='bar'><label class='fb'>Importar CSV<input type='file' id='csv' accept='.csv,text/csv,text/plain' hidden></label><button id='orig'>Fatura original</button><span id='imsg'></span></div>
+<nav class='tabs' role='tablist'><button role='tab' data-t='cat' aria-selected='true'>Despesas por categoria</button><button role='tab' data-t='dash' aria-selected='false'>Dashboard</button></nav>
+<section id='tab-cat'>
+<p class='sub'>Toque em uma categoria para ver os lançamentos. Use a coluna “Mover para” para reclassificar.</p>
+<div class="bar">
+<button id="all">Expandir tudo</button><button id="none">Recolher tudo</button>
+<button data-p="" aria-pressed="true">Todos</button><button data-p="P" aria-pressed="false">Paulo</button><button data-p="N" aria-pressed="false">Natália</button>
+</div>
+<div class="bar">
+<input id="newcat" placeholder="Nova categoria" aria-label="Nome da nova categoria"><button id="addcat">Criar categoria</button><button id="reset">Restaurar original</button><span id="chgn"></span>
+</div>
+<div class="head" aria-hidden="true"><span>Categoria</span><span class="num hide">Paulo</span><span class="num hide">Natália</span><span class="num">Total</span><span class="num hide">%</span></div>
+<div id="list"></div>
+<div class="tot" id="tot"></div>
+</section>
+<section id='tab-dash' hidden><div id='dash'></div></section>
+</main>
+<script>
+let D=[["Seguro e outros","01/07","SWIFT SOROCABA PANNUN","P",43.4,"4 de 4"],["Academia","01/10","ACADEMIA VIVA","N",27.8,""],["Saúde, farmácia e vacinas","01/10","REMEDIOPOPULAR","N",10.99,""],["Academia","01/10","ACADEMIA VIVA","P",8.0,""],["Casa/utilidades","01/10","EXPLOSAO COMERCIO DE","N",59.99,""],["Academia","01/10","ACADEMIA VIVA","N",5.9,""],["Transporte/combustível","01/10","AUTO POSTO CORREA NETO","P",40.0,""],["Academia","01/10","ACADEMIA VIVA","P",48.75,""],["Seguro e outros","01/10","YELUMSEG PARC11","P",179.43,""],["Telefonia e contas","02/01","VIVO SP LJ M371","P",237.66,"10 de 12"],["Compras online","02/05","SHOPEE *DARDARA","P",11.21,"6 de 7"],["Compras online","02/07","AMAZON MARKETPLACE","P",30.26,"4 de 9"],["Delivery, restaurantes e lanches","02/10","99FOOD *PIZZARIA VICCENZO","P",59.3,""],["Cursos e Cultura","03/08","ASAAS *FESN","P",18.06,"3 de 4"],["Delivery, restaurantes e lanches","03/10","VALDEMARIN 4 COMERCIO","P",8.0,""],["Transporte/combustível","03/10","DL*99 RIDE","N",9.82,""],["Mercado/supermercado/padaria","03/10","CARREFOUR PST 410 PSN","P",159.87,""],["Delivery, restaurantes e lanches","03/10","JOSEDEALCANTARA","P",78.0,""],["Roupas, beleza e filhos","03/10","STUDIO DGHAIR","N",240.0,"1 de 3"],["Delivery, restaurantes e lanches","04/10","LOSJEFES","P",8.0,""],["Seguro e outros","06/07","MP *CIDAFRANCA","P",10.58,"4 de 4"],["Transporte/combustível","06/10","DL*99 RIDE","N",8.6,""],["Compras online","06/10","PJB*RIOS DA AMAZONIA","P",459.95,""],["Mercado/supermercado/padaria","06/10","PADARIA E MERCADO SABOR","P",4.54,""],["Compras online","06/10","MERCADOLIVRE*MERCADOLIVRE","N",25.9,""],["Delivery, restaurantes e lanches","06/10","FABIANA ALVES LEITE","N",45.0,""],["Cursos e Cultura","06/10","HTM*HOTMART ERIC","P",18.31,"1 de 12"],["Mercado/supermercado/padaria","07/03","SUPER SHOPPING DA UTIL","P",21.87,"8 de 8"],["Mercado/supermercado/padaria","07/10","MINIMARKETLH2LTDA","P",13.79,""],["Mercado/supermercado/padaria","08/09","COOP","P",27.56,"2 de 3"],["Delivery, restaurantes e lanches","08/10","BROTHERS DOG","P",53.0,""],["Mercado/supermercado/padaria","08/10","MERCADO RASGA PRE","P",75.0,""],["Delivery, restaurantes e lanches","09/10","99FOOD *DONA TURCA DELICI","P",23.42,""],["Compras online","10/09","TIKTOK SHOP *TIK","N",66.61,"2 de 3"],["Mercado/supermercado/padaria","10/10","CARREFOUR SOR 23","N",41.32,"1 de 3"],["Mercado/supermercado/padaria","10/10","MP*CLPANIFICECON","N",67.3,""],["Bar/cerveja","10/10","MB CERVEJARIAS LTDA","P",59.0,""],["Transporte/combustível","10/10","DL*UBERRIDES","P",2.03,""],["Mercado/supermercado/padaria","10/10","CARREFOUR SOR 23","N",50.54,""],["Delivery, restaurantes e lanches","10/10","MARIA DE LURDES R","P",35.5,""],["Mercado/supermercado/padaria","10/10","CARREFOUR","P",155.9,""],["Transporte/combustível","10/10","DL*UBERRIDES","P",8.96,""],["Compras online","10/10","99 *99PAYNATALIARIBEIR","N",71.3,""],["Casa/utilidades","11/01","MAGALU FL 128","P",149.9,"10 de 10"],["Mercado/supermercado/padaria","11/06","COOP-COOPERA*COOP","P",14.78,"4 de 6"],["Casa/utilidades","11/08","FABRISPUMA","P",143.66,"3 de 21"],["Casa/utilidades","11/08","FABRISPUMA","P",166.66,"3 de 21"],["Compras online","11/09","99 *99PAY*NATALIA RIBE","N",23.0,"2 de 2"],["Compras online","11/10","99 *99PAYNATALIARIBEIR","N",26.24,""],["Delivery, restaurantes e lanches","11/10","ESTACAO ESFIHA","P",32.96,""],["Delivery, restaurantes e lanches","11/10","MARSALA COFFEE AND FOO","N",45.43,""],["Mercado/supermercado/padaria","11/10","COLO DE MAE ALIME","P",9.5,""],["Delivery, restaurantes e lanches","11/10","MARSALA COFFEE AND FOO","P",45.43,""],["Lazer/viagem","12/08","ESPACO DAS AMERICAS","P",76.5,"3 de 3"],["Mercado/supermercado/padaria","12/10","CONFIANCA SOROCAB","P",114.42,""],["Bar/cerveja","12/10","CERVEJALIVRE","P",14.0,""],["Casa/utilidades","13/08","LOUMAR*VENDA","P",99.0,"2 de 2"],["Saúde, farmácia e vacinas","14/07","CLINICA DE VACINAS SAN","P",151.66,"3 de 12"],["Delivery, restaurantes e lanches","14/07","LUZIALUCIAARANHA","N",23.0,"3 de 3"],["Saúde, farmácia e vacinas","14/07","CLINICA DE VACINAS SAN","N",68.33,"3 de 12"],["Saúde, farmácia e vacinas","14/07","CLINICA DE VACINAS SAN","N",83.33,"3 de 12"],["Lazer/viagem","14/08","CATARATAS*SA*URBIA*CAT","P",275.33,"2 de 3"],["Compras online","14/09","TIKTOK SHOP *TIKTOK SHOP","N",22.68,""],["Assinaturas digitais","14/09","APPLE.COM/BILL","P",19.9,""],["Assinaturas digitais","14/09","APPLE.COM/BILL","P",29.9,""],["Compras online","14/09","TIKTOK SHOP *TIKTOK SHOP","N",-22.68,""],["Compras online","15/07","SHOPEE *KOALABABYOFICI","P",61.71,"3 de 3"],["Compras online","15/09","LOJA CHINESA","P",33.51,"1 de 3"],["Transporte/combustível","15/09","VELOE","P",86.5,""],["Mercado/supermercado/padaria","15/09","TAUSTE SUPERMERCA","P",88.36,""],["Mercado/supermercado/padaria","16/08","COOP","P",45.92,"2 de 6"],["Delivery, restaurantes e lanches","16/09","GABRIELIBANHESDE","P",35.0,""],["Compras online","16/09","AMAZON BR","P",33.49,""],["Delivery, restaurantes e lanches","16/09","ESPETINHO FERNANDA","P",40.0,""],["Delivery, restaurantes e lanches","16/09","ESPETINHO FERNANDA","N",41.33,""],["Telefonia e contas","17/07","FLEXPAG*CPFL","P",79.24,"3 de 3"],["Mercado/supermercado/padaria","17/09","SUPER SHOPPING DA UTIL","N",36.93,""],["Delivery, restaurantes e lanches","17/09","KAISHI SANTA ROSALIA","P",93.9,""],["Delivery, restaurantes e lanches","17/09","LUZIALUCIAARANHA","N",29.5,"1 de 2"],["Saúde, farmácia e vacinas","18/04","DROHGARIA JDG","N",27.28,"6 de 6"],["Mercado/supermercado/padaria","18/06","COOP-COOPERA*COOP","N",29.56,"4 de 6"],["Compras online","18/07","MP*MERCADOLIVRE","P",6.19,"3 de 10"],["Transporte/combustível","18/07","MERCADOCAR ARICANDUVA","P",43.8,"3 de 3"],["Transporte/combustível","18/08","MOTONET COM VEICULOS","P",198.42,"2 de 4"],["Transporte/combustível","18/09","99 *99PAYPAULOGUILHERM","P",167.55,""],["Mercado/supermercado/padaria","18/09","CONFIANCA SOROCAB","P",77.12,""],["Compras online","18/09","SHOPEE *GIGIL","N",45.55,"1 de 2"],["Casa/utilidades","19/07","ELECTROLUX ELECT","N",64.15,"3 de 10"],["Cursos e Cultura","19/08","CIRANDA CULTURAL","P",35.0,"2 de 2"],["Mercado/supermercado/padaria","19/09","CONFIANCA SOROCAB","P",52.6,""],["Mercado/supermercado/padaria","19/09","CONFIANCA SOROCAB","N",55.0,""],["Delivery, restaurantes e lanches","19/09","JOSE ROBERTO PERE","P",51.9,""],["Delivery, restaurantes e lanches","19/09","JOSE ROBERTO PERE","N",51.9,""],["Mercado/supermercado/padaria","19/09","PADARIA E MERCADO","P",4.8,""],["Mercado/supermercado/padaria","19/09","CARREFOUR","N",151.08,""],["Delivery, restaurantes e lanches","19/09","MC DONALDS ISO","P",20.9,""],["Assinaturas digitais","19/09","GOOGLE G1SK005M","N",14.99,""],["Casa/utilidades","19/09","MARAVILHAS DO LAR","N",21.98,"1 de 3"],["Saúde, farmácia e vacinas","20/05","DROHGARIA JDG","N",32.41,"5 de 6"],["Mercado/supermercado/padaria","20/09","SUPERMERCADO CONF","P",82.86,""],["Roupas, beleza e filhos","21/07","BABY GYM","P",330.0,"3 de 3"],["Casa/utilidades","21/07","IKESAKI","N",49.13,"3 de 3"],["Telefonia e contas","21/09","CONTA VIVO","N",353.9,""],["Mercado/supermercado/padaria","21/09","PADARIA JARDIM GONCALV","P",9.92,""],["Mercado/supermercado/padaria","21/09","PADARIA JARDIM GONCALV","P",10.0,""],["Saúde, farmácia e vacinas","22/06","DROGARIA JDG","N",23.26,"4 de 6"],["Casa/utilidades","22/08","B1 *IMPERIO 10","N",27.5,"2 de 2"],["Despesas Diversas","22/08","DEEP MUSIC","P",40.9,"2 de 5"],["Roupas, beleza e filhos","22/08","C PERNAMBUCANAS LJ 662","N",44.99,"2 de 2"],["Delivery, restaurantes e lanches","22/09","JIM.COM THIAGO AFONSO DA","P",22.0,""],["Mercado/supermercado/padaria","22/09","DOMA SUPERMERCADOS","N",35.99,""],["Academia","22/09","WELLHUB PAULO GUILHERME C","P",69.99,""],["Compras online","23/06","SHOPEE *VIDAROSHOP","P",9.88,"4 de 8"],["Delivery, restaurantes e lanches","23/09","JIM.COM LATTIERA GELATERI","P",37.0,""],["Roupas, beleza e filhos","24/07","CARTERS","P",79.99,"3 de 3"],["Delivery, restaurantes e lanches","24/09","IFD*FF FOGAZZA LTDA","P",27.94,""],["Delivery, restaurantes e lanches","24/09","CUPIM 1365","P",29.9,""],["Delivery, restaurantes e lanches","24/09","IFD*FF FOGAZZA LTDA","N",37.79,""],["Saúde, farmácia e vacinas","24/09","REMEDIOPOPULAR","P",77.19,"1 de 2"],["Casa/utilidades","24/12","SHOP IGUATEMI ESPLANAD","P",93.54,"10 de 12"],["Saúde, farmácia e vacinas","25/08","DROGARIA JDG","P",29.3,"2 de 2"],["Delivery, restaurantes e lanches","25/09","MP*PAOEBRASA","N",34.0,""],["Saúde, farmácia e vacinas","25/09","REMEDIOPOPULAR","N",17.91,""],["Mercado/supermercado/padaria","25/09","CASA DE CARNES DIVIN","P",41.56,""],["Mercado/supermercado/padaria","25/09","CONFIANCA SOROCAB","N",44.86,""],["Delivery, restaurantes e lanches","25/09","MP*PAOEBRASA","P",49.0,""],["Mercado/supermercado/padaria","26/08","COOP","P",38.93,"2 de 3"],["Casa/utilidades","26/09","EXPLOSAO COMERCIO DE","N",60.44,"1 de 2"],["Roupas, beleza e filhos","27/07","LOJAS G","N",31.31,"3 de 3"],["Compras online","27/08","99 *99PAY*NATALIA RIBE","N",33.05,"2 de 2"],["Roupas, beleza e filhos","27/09","ALO BEBE","P",8.9,""],["Mercado/supermercado/padaria","27/09","CONFIANCA SOROCAB","P",60.61,""],["Mercado/supermercado/padaria","27/09","CONFIANCA SOROCAB","N",55.0,""],["Casa/utilidades","27/09","DAISO BRASIL","N",55.94,""],["Mercado/supermercado/padaria","27/09","CARREFOUR","N",69.01,""],["Casa/utilidades","27/09","DAISO BRASIL","P",80.0,""],["Delivery, restaurantes e lanches","27/09","99FOOD *LIG-LIG - SOROCAB","N",57.44,""],["Assinaturas digitais","27/09","GOOGLE G1SK002M","P",9.99,""],["Casa/utilidades","27/09","ARTHUR LUNDGREN TECIDO","N",31.98,"1 de 3"],["Casa/utilidades","27/09","LOJAS ESTRELA DO LAR L","P",37.99,"1 de 2"],["Mercado/supermercado/padaria","28/08","SEARA ALIMENTOS LTDA","P",48.23,"2 de 4"],["Delivery, restaurantes e lanches","28/09","CACAU SHOW","P",23.15,""],["Compras online","28/09","SHOPEE *RAFASTORE20241","N",77.74,""],["Delivery, restaurantes e lanches","28/09","RENATO HOGERA","P",51.0,""],["Assinaturas digitais","29/01","PG *DIETAAI DIETA","P",32.62,"9 de 11"],["Compras online","29/03","SHOPEE *BETHNOLASCO","P",5.2,"7 de 7"],["Assinaturas digitais","29/09","NETFLIX.COM","P",20.9,""],["Mercado/supermercado/padaria","29/09","TRI.GO","P",5.59,""],["Compras online","29/09","MERCADOLIVRE*MERCADOLIVRE","N",70.65,""],["Mercado/supermercado/padaria","29/09","PADOCAPORTUGUESA","P",20.0,""],["Compras online","29/09","SHEIN *HPA DA A","N",95.3,"1 de 3"],["Roupas, beleza e filhos","30/07","LOTUS BOUTIQUE LTDA","N",73.5,"3 de 4"],["Mercado/supermercado/padaria","30/09","AMERICA SUPERMERCADOS","P",6.5,""],["Assinaturas digitais","30/09","EBN *SPOTIFY","P",40.9,""],["Compras online","30/09","SHOPEE *DAIMINSTRUMENT","P",9.68,"1 de 2"],["Compras online","30/09","EBN*TIKTOK SH","N",23.99,"1 de 2"],["Casa/utilidades","30/09","SEISHO CASA DOS COMBIN","P",105.25,""],["Delivery, restaurantes e lanches","30/09","CHURROS CIA","P",8.0,""],["Delivery, restaurantes e lanches","30/09","OCA BURGER","P",56.0,""],["Mercado/supermercado/padaria","31/07","COOP","P",41.38,"3 de 6"]];
+const f=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const nm={P:'Paulo',N:'Natália'};
+const D0=D;try{const s=JSON.parse(localStorage.getItem('imp')||'null');if(s&&s.length)D=s}catch(e){}
+let flt='';let ov={};try{ov=JSON.parse(localStorage.getItem('ov')||'{}')}catch(e){}
+let custom=[];try{custom=JSON.parse(localStorage.getItem('cc')||'[]')}catch(e){}
+let pend='';
+const sv=()=>{try{localStorage.setItem('ov',JSON.stringify(ov));localStorage.setItem('cc',JSON.stringify(custom))}catch(e){}};
+const gc=i=>ov[i]!==undefined?ov[i]:D[i][0];
+const allc=()=>[...new Set([...D.map(r=>r[0]),...custom])].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+const sel=r=>`<select data-i="${r[6]}" aria-label="Mover ${r[2]} para outra categoria">${allc().map(c=>`<option${c===r[0]?' selected':''}>${c}</option>`).join('')}</select>`;
+function render(){
+  const open=new Set([...document.querySelectorAll('details[open]')].map(e=>e.dataset.c));
+  if(pend){open.add(pend);pend=''}
+  const rows=D.map((r,i)=>[gc(i),r[1],r[2],r[3],r[4],r[5],i]).filter(r=>!flt||r[3]===flt);
+  const g={};rows.forEach(r=>{(g[r[0]]=g[r[0]]||[]).push(r)});
+  const sum=a=>a.reduce((s,r)=>s+r[4],0);
+  const T=sum(rows);
+  const cats=Object.keys(g).sort((a,b)=>sum(g[b])-sum(g[a]));
+  document.getElementById('list').innerHTML=cats.map(c=>{
+    const a=g[c],p=sum(a.filter(r=>r[3]==='P')),n=sum(a.filter(r=>r[3]==='N'));
+    const body=a.slice().sort((x,y)=>y[4]-x[4]).map(r=>`<tr${ov[r[6]]!==undefined?' class="chg"':''}><td>${r[1]}</td><td>${r[2]}</td><td>${nm[r[3]]}</td><td>${r[5]||'À vista'}</td><td class="num ${r[4]<0?'neg':''}">${f(r[4])}</td><td>${sel(r)}</td></tr>`).join('');
+    return `<details data-c="${c}"${open.has(c)?' open':''}><summary><span class="nm">${c} <span class="cnt">(${a.length})</span></span><span class="num hide">${f(p)}</span><span class="num hide">${f(n)}</span><span class="num">${f(sum(a))}</span><span class="num hide">${(sum(a)/T*100).toFixed(1).replace('.',',')}%</span></summary><div class="tw"><table><thead><tr><th>Data</th><th>Estabelecimento</th><th>Portador</th><th>Parcela</th><th class="num">Valor</th><th>Mover para</th></tr></thead><tbody>${body}</tbody></table></div></details>`}).join('');
+  const P=sum(rows.filter(r=>r[3]==='P')),N=sum(rows.filter(r=>r[3]==='N'));
+  dash();const k=Object.keys(ov).length;document.getElementById('chgn').textContent=k?k+(k>1?' lançamentos reclassificados':' lançamento reclassificado'):'';
+  document.getElementById('tot').innerHTML=`<div class="head"><span>Total (${rows.length} lançamentos)</span><span class="num hide">${f(P)}</span><span class="num hide">${f(N)}</span><span class="num">${f(T)}</span><span class="num hide">100%</span></div>`;
+}
+document.getElementById('all').onclick=()=>document.querySelectorAll('details').forEach(e=>e.open=true);
+document.getElementById('none').onclick=()=>document.querySelectorAll('details').forEach(e=>e.open=false);
+document.querySelectorAll('button[data-p]').forEach(b=>b.onclick=()=>{flt=b.dataset.p;document.querySelectorAll('button[data-p]').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
+document.getElementById('list').addEventListener('change',e=>{const s=e.target;if(!s.matches('select[data-i]'))return;const i=+s.dataset.i;if(s.value===D[i][0])delete ov[i];else ov[i]=s.value;pend=s.value;sv();render()});
+document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-t]').forEach(x=>x.setAttribute('aria-selected',x===b));document.getElementById('tab-cat').hidden=b.dataset.t!=='cat';document.getElementById('tab-dash').hidden=b.dataset.t!=='dash'});
+function dash(){
+const R=D.map((r,i)=>({c:gc(i),e:r[2],p:r[3],v:r[4],pc:r[5]}));
+const S=a=>a.reduce((s,r)=>s+r.v,0),pc=(a,b)=>b?(a/b*100).toFixed(1).replace('.',',')+'%':'0%';
+const Pr=R.filter(r=>r.p==='P'),Nr=R.filter(r=>r.p==='N'),T=S(R),P=S(Pr),N=S(Nr);
+const by=a=>{const m={};a.forEach(r=>m[r.c]=(m[r.c]||0)+r.v);return Object.entries(m).sort((x,y)=>y[1]-x[1])};
+const one=(it,col)=>{const mx=Math.max(...it.map(i=>i[1]),1);return it.map(([k,v])=>`<div class='br'><span>${k}</span><span class='bt'><i style='width:${Math.max(v,0)/mx*100}%;background:${col}'></i></span><span class='bv'>${f(v)}</span></div>`).join('')};
+const all=by(R),mx=Math.max(...all.map(x=>x[1]),1);
+const stack=all.map(([k])=>{const p=S(Pr.filter(r=>r.c===k)),n=S(Nr.filter(r=>r.c===k));return `<div class='br'><span>${k}</span><span class='bt'><i title='Paulo: ${f(p)}' style='width:${Math.max(p,0)/mx*100}%;background:var(--acc)'></i><i title='Natália: ${f(n)}' style='width:${Math.max(n,0)/mx*100}%;background:var(--n)'></i></span><span class='bv'>${f(p+n)}</span></div>`}).join('');
+const par=R.filter(r=>r.pc).map(r=>{const [n,m]=r.pc.split(' de ').map(Number);return {...r,n,m}});
+const pv=S(par),pP=S(par.filter(r=>r.p==='P')),pN=pv-pP;
+const fut=par.reduce((s,r)=>s+r.v*(r.m-r.n),0),nw=par.filter(r=>r.n===1);
+const g={};par.filter(r=>r.n<r.m).forEach(r=>{const k=r.e+'|'+r.pc;const o=g[k]=g[k]||{k:r.e,v:0,s:(r.m-r.n)+' parcelas restantes'};o.v+=r.v});
+const fx=R.filter(r=>!r.pc&&/CONTA VIVO|NETFLIX|SPOTIFY|APPLE|GOOGLE|WELLHUB/.test(r.e.toUpperCase())).map(r=>({k:r.e,v:r.v,s:'mensal, sem fim definido'}));
+const rec=[...Object.values(g),...fx].sort((a,b)=>b.v-a.v).slice(0,8),rm=rec[0]?rec[0].v:1;
+const recH=rec.map(o=>`<div class='br'><span>${o.k}<small>${o.s}</small></span><span class='bt'><i style='width:${o.v/rm*100}%;background:var(--acc)'></i></span><span class='bv'>${f(o.v)}</span></div>`).join('');
+const pb=(l,a,t,col)=>`<div class='br'><span>${l}</span><span class='bt'><i style='width:${a/t*100}%;background:${col}'></i></span><span class='bv'>${pc(a,t)} parcelado</span></div>`;
+const top=a=>'<ul>'+a.slice().sort((x,y)=>y.v-x.v).slice(0,5).map(r=>`<li>${r.e}: <b>${f(r.v)}</b></li>`).join('')+'</ul>';
+const tN=by(Nr)[0]||['sem gastos',0],tP=by(Pr)[0]||['sem gastos',0],mk=all.find(x=>x[0].startsWith('Mercado')),fd=S(R.filter(r=>/^Delivery|^Bar/.test(r.c)));
+const sm=R.filter(r=>r.v>0&&r.v<50&&!r.pc),big=R.slice().sort((a,b)=>b.v-a.v)[0];
+const ins=[
+`Natália concentra o gasto em <b>${tN[0]}</b>: ${f(tN[1])}, ${pc(tN[1],N)} da fatura dela.`,
+`Paulo concentra o gasto em <b>${tP[0]}</b>: ${f(tP[1])}, ${pc(tP[1],P)} da fatura dele.`,
+`${pc(pv,T)} da fatura (${f(pv)}) está parcelada. Há ${f(fut)} em parcelas futuras já comprometidas, sem contar compras novas.`,
+`Entraram ${nw.length} parcelamentos novos nesta fatura, somando ${f(S(nw))} por mês. Parcelar compras pequenas mantém a fatura alta.`,
+mk?`Mercado, padaria e afins somam ${f(mk[1])} (${pc(mk[1],T)}), em ${R.filter(r=>r.c===mk[0]).length} compras. Concentrar em uma compra semanal tende a reduzir esse valor.`:'',
+`Delivery, restaurantes e bar somam ${f(fd)} (${pc(fd,T)} da fatura).`,
+`${sm.length} compras à vista abaixo de R$ 50 somam ${f(S(sm))}: gastos pequenos que passam despercebidos.`,
+rec[0]?`O maior gasto recorrente é <b>${rec[0].k}</b>: ${f(rec[0].v)} por mês (${rec[0].s}).`:'',
+`A maior compra única foi <b>${big.e}</b>, ${f(big.v)}.`].filter(Boolean);
+document.getElementById('dash').innerHTML=`<div class='kpis'><div class='kpi'><span>Total da fatura</span><b>${f(T)}</b></div><div class='kpi'><span>Paulo (${pc(P,T)})</span><b>${f(P)}</b></div><div class='kpi'><span>Natália (${pc(N,T)})</span><b>${f(N)}</b></div><div class='kpi'><span>Parcelado (${pc(pv,T)})</span><b>${f(pv)}</b></div></div>
+<div class='grid'><div class='card full'><h2>Gasto por categoria e pessoa</h2><div class='leg'><i style='background:var(--acc)'></i>Paulo<i style='background:var(--n)'></i>Natália</div>${stack}</div>
+<div class='card'><h2>Onde a Natália mais gasta</h2>${one(by(Nr).slice(0,6),'var(--n)')}</div>
+<div class='card'><h2>Onde o Paulo mais gasta</h2>${one(by(Pr).slice(0,6),'var(--acc)')}</div>
+<div class='card full'><h2>Maiores gastos recorrentes</h2>${recH}</div>
+<div class='card'><h2>Parcelado por pessoa</h2>${pb('Paulo',pP,P,'var(--acc)')}${pb('Natália',pN,N,'var(--n)')}</div>
+<div class='card'><h2>Maiores lançamentos</h2><b>Natália</b>${top(Nr)}<b>Paulo</b>${top(Pr)}</div>
+<div class='card full'><h2>Insights</h2><ul>${ins.map(t=>`<li>${t}</li>`).join('')}</ul></div></div>`;
+}
+document.getElementById('reset').onclick=()=>{ov={};sv();render()};
+const RL=[['Mercado/supermercado/padaria','CARREFOUR|COOP|CONFIANCA|SUPERMERC|MERCADO RASGA|MINIMARKET|TAUSTE|DOMA|AMERICA SUPER|PADARIA|PADOCA|PANIFIC|SEARA|CASA DE CARNES|COLO DE MAE|SUPER SHOPPING|TRI.GO'],['Cursos e Cultura','CIRANDA|ASAAS|HOTMART'],['Despesas Diversas','DEEP MUSIC'],['Delivery, restaurantes e lanches','99FOOD|IFD|MARSALA|ESFIHA|MC DONALDS|CUPIM|OCA BURGER|CHURROS|ESPETINHO|KAISHI|LOSJEFES|PAOEBRASA|CACAU|JIM.COM|JOSEDEALCANTARA|LUZIALUCIA|FABIANA|MARIA DE LURDES|GABRIELIBANHES|RENATO|JOSE ROBERTO|VALDEMARIN|BROTHERS'],['Bar/cerveja','CERVEJ|MB CERV'],['Assinaturas digitais','NETFLIX|SPOTIFY|APPLE|GOOGLE|DIETAAI'],['Academia','ACADEMIA|WELLHUB'],['Saúde, farmácia e vacinas','REMEDIO|DROGARIA|DROHGARIA|CLINICA'],['Telefonia e contas','VIVO|FLEXPAG'],['Transporte/combustível','99 RIDE|UBER|AUTO POSTO|VELOE|MOTONET|MERCADOCAR|99PAYPAULO'],['Compras online','SHOPEE|MERCADOLIVRE|AMAZON|TIKTOK|SHEIN|LOJA CHINESA|99 *99PAY'],['Casa/utilidades','DAISO|SEISHO|ELECTROLUX|MARAVILHAS|ARTHUR|ESTRELA DO LAR|MAGALU|IKESAKI|EXPLOSAO|IMPERIO|LOUMAR|FABRISPUMA|SHOP IGUATEMI'],['Roupas, beleza e filhos','STUDIO|PERNAMBUCANAS|CARTERS|ALO BEBE|LOTUS|LOJAS G|KOALA|BABY GYM'],['Lazer/viagem','CATARATAS|ESPACO DAS AMERICAS|RIOS DA AMAZONIA']];
+function cls(e){e=e.toUpperCase();for(const [n,k] of RL)if(k.split('|').some(x=>e.includes(x)))return n;return 'Seguro e outros'}
+function parse(t){if(t.charCodeAt(0)===0xFEFF)t=t.slice(1);const L=t.split('\n').filter(x=>x.trim()),out=[],unk=[];
+L.slice(1).forEach(l=>{const c=l.split(';').map(s=>s.trim().split('"').join(''));if(c.length<4)return;const e=c[1].split(' ').filter(Boolean).join(' ');if(e.toLowerCase().includes('pagamento'))return;
+const v=parseFloat(c[3].replace(/[^0-9,-]/g,'').replace(',','.'));if(isNaN(v))return;
+let p=/PAULO/i.test(c[2])?'P':/NATALIA/i.test(c[2])?'N':null;if(!p){if(!unk.includes(c[2]))unk.push(c[2]);p=unk.indexOf(c[2])===0?'P':'N'}
+const pc=(c[4]||'').trim();out.push([cls(e),c[0].slice(0,5),e,p,Math.round(v*100)/100,pc==='-'?'':pc])});return out}
+document.getElementById('csv').onchange=ev=>{const fl=ev.target.files[0];if(!fl)return;const rd=new FileReader();rd.onload=()=>{const r=parse(String(rd.result)),m=document.getElementById('imsg');
+if(!r.length){m.textContent='Não encontrei lançamentos. Use o formato Data;Estabelecimento;Portador;Valor;Parcela.';return}
+D=r;ov={};try{localStorage.setItem('imp',JSON.stringify(r));localStorage.setItem('impn',fl.name)}catch(e){}sv();
+document.getElementById('ttl').textContent='Fatura importada: '+fl.name;m.textContent=r.length+' lançamentos importados, total '+f(r.reduce((s,x)=>s+x[4],0))+'.';render()};rd.readAsText(fl,'utf-8');ev.target.value=''};
+document.getElementById('orig').onclick=()=>{D=D0;ov={};try{localStorage.removeItem('imp');localStorage.removeItem('impn')}catch(e){}sv();document.getElementById('ttl').textContent='Fatura de 20/10/2026';document.getElementById('imsg').textContent='';render()};
+try{const n=localStorage.getItem('impn');if(n&&D!==D0)document.getElementById('ttl').textContent='Fatura importada: '+n}catch(e){}
+document.getElementById('addcat').onclick=()=>{const inp=document.getElementById('newcat'),v=inp.value.trim();if(v&&!allc().includes(v)){custom.push(v);sv();render()}inp.value=''};
+render();
+</script>
+<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
+</body>
+</html>
